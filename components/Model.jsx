@@ -4,8 +4,8 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
 
 export default function Model() {
-  const { nodes } = useGLTF("/medias/torrus.glb");
-  // const { nodes } = useGLTF("/medias/klein_bottle.glb");
+  const { nodes } = useGLTF("/medias/infinity_11.glb");
+  // const { nodes } = useGLTF("/medias/klein_bottle_2.glb");
 
   const { viewport } = useThree();
   const torus = useRef(null);
@@ -29,18 +29,20 @@ export default function Model() {
   });
 
   return (
-    <group scale={viewport.width / 3}>
+    <group scale={viewport.width / 5}>
       <Text
         font={"/fonts/PPNeueMontreal-Bold.otf"}
         position={[0, 0, -1]}
-        fontSize={0.5}
+        fontSize={0.8}
         color="white"
         anchorX="center"
         anchorY="middle"
       >
-        Krzysztofie Łuczko,
+        Possibilties
+        {/* {"\n"}
+        {"\n"} */}
       </Text>
-      <mesh ref={torus} {...nodes.Torus002}>
+      <mesh ref={torus} {...nodes.infinity}>
         <MeshTransmissionMaterial {...materialProps} />
       </mesh>
     </group>
