@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useGLTF, Text, MeshTransmissionMaterial } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useControls } from "leva";
+// import { useControls } from "leva";
 
 export default function Model() {
   const { nodes } = useGLTF("/medias/infinity_11.glb");
@@ -49,7 +49,7 @@ export default function Model() {
         anchorX="center"
         anchorY="middle"
       >
-        Possibilties
+        Possibilities
         {/* {"\n"}
         {"\n"} */}
       </Text>
