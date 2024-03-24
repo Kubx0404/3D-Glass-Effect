@@ -1,49 +1,49 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 import localFont from "next/font/local";
+import { Scroll } from "@react-three/drei";
+
 const myFont = localFont({ src: "../public/fonts/PPNeueMontreal-Bold.otf" });
 
 export default function Caption() {
   const [designWord, setDesignWord] = useState("Good");
-  const container = useRef(null);
 
   // offset [start animation/ end animation] ["ref, window", "ref, window"]
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start 0.7", "center center"],
-  });
 
-  // Second scroll progress to implement designWord change
-  // to do
-  const { scrollYProgress2 } = useScroll({
-    target: container,
-    offset: ["start start", "end end"],
-  });
-
-  // To smooth it out
-  const scaleX = useSpring(scrollYProgress);
+  const ScrollAnimation = ({ children }) => {
+    const container = useRef(null);
+    const { scrollYProgress } = useScroll({
+      target: container,
+      offset: ["start 0.75", "center center"],
+    });
+    return (
+      <motion.div ref={container} style={{ opacity: scrollYProgress }}>
+        {children}
+      </motion.div>
+    );
+  };
 
   return (
     <>
       <div
-        className={`h-[80vh] bg-black  text-white ${myFont.className} flex justify-center items-center`}
+        className={`h-[80vh] bg-black text-white ${myFont.className} flex justify-center items-center`}
       >
-        <p className="text-[9rem] leading-none text-[#F2F2F2]">to make</p>
+        <ScrollAnimation>
+          <p className="text-[9rem] leading-none text-[#F2F2F2]">to make</p>
+        </ScrollAnimation>
       </div>
       <div
-        className={`h-[100vh] bg-black  text-white ${myFont.className} flex justify-center items-center text-center`}
+        className={`h-[80vh] bg-black text-white ${myFont.className} flex justify-center items-center text-center`}
       >
-        <motion.p
-          className="text-[9rem] leading-none text-[#F2F2F2]"
-          style={{ opacity: scaleX }}
-          ref={container}
-        >
-          {designWord}
-          <br />
-          Design
-        </motion.p>
+        <ScrollAnimation>
+          <p className="text-[9rem] leading-none text-[#F2F2F2]">
+            {designWord}
+            <br />
+            Design
+          </p>
+        </ScrollAnimation>
       </div>
       <div className="h-[100vh] bg-black"></div>
     </>
