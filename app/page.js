@@ -9,9 +9,9 @@ const Scene = dynamic(() => import("@/components/Scene"), {
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className="h-screen">
-        <Scene />
-      </div>
+      {/* <div className="h-screen"> */}
+      <Scene />
+      {/* </div> */}
 
       <Caption />
     </main>
